@@ -9,7 +9,8 @@
     "backbone": "1.0.x",
     "benchmark": "git://github.com/bestiejs/benchmark.js.git",
     "sinon": "http://sinonjs.org/releases/sinon-1.7.1.js",
-    "requirejs": "~2.1.8"
+    "requirejs": "~2.1.8",
+    "socket.io-client": "~0.9"
   },
   "exportsOverride": {
     "mocha": {

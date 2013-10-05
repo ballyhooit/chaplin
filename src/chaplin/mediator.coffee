@@ -4,6 +4,10 @@ Backbone = require 'backbone'
 _ = require 'underscore'
 support = require 'chaplin/lib/support'
 utils = require 'chaplin/lib/utils'
+io = require 'socket.io-client'
+host = 'localhost:3333'
+
+io.connect host
 
 # Mediator
 # --------
@@ -27,9 +31,9 @@ mediator = {}
 
 # Mixin event methods from Backbone.Events,
 # create Publish/Subscribe aliases.
-mediator.subscribe   = Backbone.Events.on
+mediator.subscribe   = Backbone.Events.on = io.on
 mediator.unsubscribe = Backbone.Events.off
-mediator.publish     = Backbone.Events.trigger
+mediator.publish     = Backbone.Events.trigger = io.emit
 
 # Initialize an empty callback list so we might seal the mediator later.
 mediator._callbacks = null
@@ -73,6 +77,8 @@ mediator.removeHandlers = (instanceOrNames) ->
     for name, handler of handlers when handler.instance is instanceOrNames
       delete handlers[name]
   return
+
+mediator.io = io
 
 # Make properties readonly.
 utils.readonly mediator,

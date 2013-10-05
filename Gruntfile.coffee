@@ -47,7 +47,7 @@ module.exports = (grunt) ->
     # Clean
     # -----
     clean:
-      build: 'build'
+      dist: 'dist'
       temp: 'temp'
       components: 'components'
       test: ['test/temp*', 'test/coverage']
@@ -101,7 +101,7 @@ module.exports = (grunt) ->
         remote: 'git@github.com:chaplinjs/downloads.git'
         branch: 'gh-pages'
         files: [
-          { expand: true, cwd: 'build/', src: 'chaplin.{js,min.js}' },
+          { expand: true, cwd: 'dist/', src: 'chaplin.{js,min.js}' },
           {
             dest: 'bower.json',
             body: {
@@ -209,7 +209,7 @@ module.exports = (grunt) ->
     concat:
       universal:
         files: [
-          dest: 'build/<%= pkg.name %>.js'
+          dest: 'dist/<%= pkg.name %>.js'
           src: modules
         ]
 
@@ -336,14 +336,14 @@ module.exports = (grunt) ->
         mangle: false
       universal:
         files:
-          'build/chaplin.min.js': 'build/chaplin.js'
+          'dist/chaplin.min.js': 'dist/chaplin.js'
 
     # Compression
     # -----------
     compress:
       files: [
-        src: 'build/chaplin.min.js'
-        dest: 'build/chaplin.min.js.gz'
+        src: 'dist/chaplin.min.js'
+        dest: 'dist/chaplin.min.js.gz'
       ]
 
     # Watching for changes
